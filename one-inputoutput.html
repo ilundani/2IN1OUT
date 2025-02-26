@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1 INPUT 1 OUTPUT TEMPLATE</title>
+    <link rel="stylesheet" href="one-inputoutput.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Modak&display=swap" rel="stylesheet">
+    <style>
+        .modak-regular {
+            font-family: "Modak", serif;
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        /* STYLE FOR THE IMAGE */
+        #displayedImage {
+            display: none; /* This line is mandatory */
+        }
+
+        /* STYLE FOR THE TITLE */
+        #imageTitle {
+            font-size: 24px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+   
+<body>
+     <h1>Your Initial, Your JOJO Stand! ⋆｡°✩</h1>
+     <div class="container">
+    <!-- INPUT FIELD FOR 1 CHARACTER -->
+    <input type="text" id="charInput" maxlength="1">
+
+    <!-- BUTTON TO DISPLAY IMAGE -->
+    <button onclick="displayImage()" id="submitButton">Show Image</button>
+
+    <!-- IMAGE TO DISPLAY -->
+    <img id="displayedImage" class="images" src="" alt="Displayed Image">
+
+    <!-- IMAGE TITLE -->
+    <p id="imageTitle"></p>
+     </div>
+
+
+    <!-- Image Display Script Below -->
+    <script>
+        // Array of images
+        const images = [
+            "https://static.jojowiki.com/images/6/60/latest/20191015214440/AnubisMangaAv.png", //A
+            "https://static.jojowiki.com/images/d/db/latest/20191015213551/BlackSabbathAv.png", //B
+            "https://static.jojowiki.com/images/2/24/latest/20191015213542/CrazyDiamondAvAnim.png", //C
+            "https://static.jojowiki.com/images/3/32/latest/20191015213650/D4CAv.png", //D
+            "https://static.jojowiki.com/images/6/6f/latest/20191015213932/EmperorMangaAv.png", //E
+            "https://static.jojowiki.com/images/thumb/1/1d/latest/20191017172656/BitestheDustMangaAv.jpg/120px-BitestheDustMangaAv.jpg", //F
+            "https://static.jojowiki.com/images/2/2a/latest/20191015213248/GoldExperienceAv.png", //G
+            "https://static.jojowiki.com/images/3/37/latest/20191015213653/SpiceGirlAv.png", //H
+            "https://static.jojowiki.com/images/5/52/latest/20230910190631/GooGooDollsAv.png", //I
+            "https://static.jojowiki.com/images/4/46/latest/20191015212841/StickyFingersAv.png", //J
+            "https://static.jojowiki.com/images/3/35/latest/20210726111253/KillerQueenMangaAv.png", //K
+            "https://static.jojowiki.com/images/a/a9/latest/20200101165626/LimpBizkitAv.png", //L
+            "https://static.jojowiki.com/images/7/7c/latest/20200101165815/MagicianRedMangaAv.png", //M
+            "https://static.jojowiki.com/images/a/ae/latest/20191015213327/MoodyBluesAv.png", //N
+            "https://static.jojowiki.com/images/6/66/latest/20191015214715/OasisAv.png", //O
+            "https://static.jojowiki.com/images/2/25/latest/20191015213853/PurpleHazeAv.png", //P
+            "https://static.jojowiki.com/images/6/6a/latest/20200101165757/HierophantGreenMangaAv.png", //Q
+            "https://static.jojowiki.com/images/6/6a/latest/20200102231412/StarPlatinumMangaAv.png", //R
+            "https://static.jojowiki.com/images/0/0f/latest/20211201062430/StoneFreeAv.png", //S
+            "https://static.jojowiki.com/images/c/cb/latest/20191015212934/TheWorldMangaAv.png", //T
+            "https://static.jojowiki.com/images/1/11/latest/20191015213316/ChariotRequiemAv.png", //U
+            "https://static.jojowiki.com/images/5/57/latest/20221218193725/Soft%26WetAv.png", //V
+            "https://static.jojowiki.com/images/thumb/0/09/latest/20191015215410/WeatherReportSAv.png/120px-WeatherReportSAv.png", //W
+            "https://static.jojowiki.com/images/4/4c/latest/20200101163627/DoggyStyleAv.png", //X
+            "https://static.jojowiki.com/images/8/8d/latest/20200102231534/SilverChariotMangaAv.png", //Y
+            "https://static.jojowiki.com/images/c/cb/latest/20191015212934/TheWorldMangaAv.png"  //Z
+        ];
+
+        // Array of stand names (to match images)
+        const standNames = [
+            "Anubis", "Black Sabbath", "Crazy Diamond", "D4C", "Emperor", "BitestheDust", 
+            "Gold Experience", "Spice Girl", "Goo Goo Dolls", "Sticky Fingers", "Killer Queen", 
+            "Limp Bizkit", "Magician Red", "Moody Blues", "Oasis", "Purple Haze", "Hierophant Green", 
+            "Star Platinum", "Stone Free", "The World", "Chariot Requiem", "Soft & Wet", 
+            "Weather Report", "Doggy Style", "Silver Chariot", "The World"
+        ];
+
+        function displayImage() {
+            const input = document.getElementById("charInput").value.toUpperCase();
+            const imgElement = document.getElementById("displayedImage");
+            const titleElement = document.getElementById("imageTitle");
+
+            // Assign an image based on character (A-Z)
+            const index = input.charCodeAt(0) - 65; // 'A' is 65 in ASCII
+            if (index >= 0 && index < images.length) {
+                imgElement.src = images[index];
+                imgElement.style.display = "block";
+                titleElement.textContent = standNames[index]; // Set the stand's name
+            } else {
+                // IF INVALID INPUT IS ENTERED, DISPLAY ALTERNATE IMAGE AND TITLE
+                imgElement.src = "https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExcmtkdnJhMXY4Njd1cXR3MTM3MW1nMzZ1NXNhNHlhOHA0MWF2dDUzdyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/13dRJkj5wgKq9q/giphy.gif";
+                imgElement.style.display = "block";
+                titleElement.textContent = "Invalid Input! Please enter a letter between A and Z.";
+            }
+        }
+    </script>
+
+</body>
+</html>
